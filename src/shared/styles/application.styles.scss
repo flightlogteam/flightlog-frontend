@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,200&family=Rubik&display=swap');
+// Variables 
+$page-background: #F3F5F7;
+
+
+
+$color-primary-0: #0B54A6;	// Main Primary color */
+$color-primary-1: #4982C1;
+$color-primary-2: #266BB8;
+$color-primary-3: #084283;
+$color-primary-4: #053366;
+
+$color-complement-0: #FE9A00;	// Main Complement color */
+$color-complement-1: #FFBB53;
+$color-complement-2: #FFA823;
+$color-complement-3: #C97A00;
+$color-complement-4: #9D5F00;
+
+
+
+// As RGBa codes */
+
+$rgba-primary-0: rgba( 11, 84,166,1);	// Main Primary color */
+$rgba-primary-1: rgba( 73,130,193,1);
+$rgba-primary-2: rgba( 38,107,184,1);
+$rgba-primary-3: rgba(  8, 66,131,1);
+$rgba-primary-4: rgba(  5, 51,102,1);
+
+$rgba-complement-0: rgba(254,154,  0,1);	// Main Complement color */
+$rgba-complement-1: rgba(255,187, 83,1);
+$rgba-complement-2: rgba(255,168, 35,1);
+$rgba-complement-3: rgba(201,122,  0,1);
+$rgba-complement-4: rgba(157, 95,  0,1);
+
+
+html {
+  font-family: 'Montserrat', sans-serif;;
+}
+
+$default-font: 'Montserrat', sans-serif;
+$secondary-font: 'Rubik', sans-serif;
+
+/* MEDIA QUERY BREAKPOINTS */
+$breakpoint-mobile: 320px;
+$breakpoint-tablet: 786px;
+$breakpoint-laptop: 1024px;
+$breakpoint-large: 1200px;
