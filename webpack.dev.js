@@ -11,5 +11,6 @@ module.exports = merge(common, {
     port: 8080,
     stats: "errors-only",
     progress: true,
+    historyApiFallback: true, // Handy for developing SPA's
   },
 });

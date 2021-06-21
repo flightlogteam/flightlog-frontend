@@ -5,9 +5,9 @@
     /* Basic Options */
     // "incremental": true,                         /* Enable incremental compilation */
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
-    "module": "es2015",
-    "lib": ["es2017", "dom", "dom.iterable"],
+    "target": "es2020",
+    "module": "es2020",
+    "lib": ["es2020", "es2017", "dom", "dom.iterable"],
     // "lib": [],                                   /* Specify library files to be included in the compilation. */
     // "allowJs": true,                             /* Allow javascript files to be compiled. */
     // "checkJs": true,                             /* Report errors in .js files. */

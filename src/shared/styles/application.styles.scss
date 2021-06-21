@@ -2,8 +2,6 @@
 // Variables 
 $page-background: #F3F5F7;
 
-
-
 $color-primary-0: #0B54A6;	// Main Primary color */
 $color-primary-1: #4982C1;
 $color-primary-2: #266BB8;
@@ -33,9 +31,6 @@ $rgba-complement-3: rgba(201,122,  0,1);
 $rgba-complement-4: rgba(157, 95,  0,1);
 
 
-html {
-  font-family: 'Montserrat', sans-serif;;
-}
 
 $default-font: 'Montserrat', sans-serif;
 $secondary-font: 'Rubik', sans-serif;
@@ -45,3 +40,12 @@ $breakpoint-mobile: 320px;
 $breakpoint-tablet: 786px;
 $breakpoint-laptop: 1024px;
 $breakpoint-large: 1200px;
+
+html {
+  font-family: $default-font;
+}
+
+body {
+  background-color: $page-background;
+  background: $page-background;
+}

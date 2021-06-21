@@ -17,6 +17,10 @@ export class NavigationQuery extends QueryEntity<NavigationState> {
     const routes = data.routes as Route[];
     return routes.filter((item) => item?.navigation);
   });
+
+  get route(): Route {
+    return this.getValue().currentRoute;
+  }
 }
 
 export const navigationQuery = new NavigationQuery(navigationStore);

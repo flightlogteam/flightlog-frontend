@@ -1,8 +1,13 @@
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map";
 import { Subscription } from "rxjs";
 import { authenticationQuery } from "../../shared/authentication/state";
-import { navigationQuery, Route } from "../../shared/state/navigation/state";
+import {
+  navigationQuery,
+  navigationService,
+  Route,
+} from "../../shared/state/navigation/state";
 import styles from "./toolbar-component.styles.scss";
 
 export interface NavigationConfig {
@@ -21,12 +26,21 @@ export class ToolbarComponent extends LitElement {
   @property()
   userId = "";
 
+  @property({ attribute: false })
+  currentRoute: Route = navigationQuery.route;
+
   constructor() {
     super();
     this.subscriptions.push(
       navigationQuery.mainNavigation.subscribe(
         (routes) => (this.navigation = routes)
       )
+    );
+
+    this.subscriptions.push(
+      navigationQuery.currentRoute.subscribe((route) => {
+        this.currentRoute = route;
+      })
     );
   }
 
@@ -58,7 +72,7 @@ export class ToolbarComponent extends LitElement {
           <h2>Flightlogger</h2>
         </div>
         <div class="toolbar-right">
-          <div class="navigation-items">${this.navigationElements()}</div>
+          <div class="navigation-items ">${this.navigationElements()}</div>
         </div>
       </div>
     `;
@@ -71,10 +85,14 @@ export class ToolbarComponent extends LitElement {
   }
 
   navigationElement(item: Route): TemplateResult {
+    const classes = {
+      "navigation-item": "navigation-item",
+      active: this.currentRoute.route === item.route,
+    };
     return html`
       <div
         @click="${() => this.navigationChange(item.route)}"
-        class="navigation-item"
+        class=${classMap(classes)}
       >
         <flightlog-icon>${item.icon}</flightlog-icon>
         <h5>${item.name}</h5>
@@ -83,6 +101,6 @@ export class ToolbarComponent extends LitElement {
   }
 
   navigationChange(route: string): void {
-    console.log(route);
+    navigationService.navigate(route, {});
   }
 }

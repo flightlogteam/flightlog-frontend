@@ -19,23 +19,18 @@ export class NavigationStore extends EntityStore<NavigationState> {
     }));
   }
 
-  static page404(): Route {
-    return {
-      name: "Not found",
-      route: "404",
-      icon: "404",
-    };
-  }
-
   private findMatchingRoute(location: Location): Route {
-    console.log(this.getValue());
     const routes = this.getValue().routes as Route[];
     for (const item of routes) {
       if (item.route === location.pathname) {
         return item;
       }
     }
-    return NavigationStore.page404();
+
+    const notFound = (this.getValue().routes as Route[]).find(
+      (item) => item.route === "/404"
+    );
+    return notFound;
   }
 }
 
