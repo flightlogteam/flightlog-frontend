@@ -6,11 +6,9 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
   devServer: {
-    contentBase: [path.join(__dirname, "demo"), path.join(__dirname, "dist")],
-    compress: true,
+    static: [path.join(__dirname, "demo"), path.join(__dirname, "dist")],
     port: 8080,
-    stats: "errors-only",
-    progress: true,
+    //stats: "errors-only",
     historyApiFallback: true, // Handy for developing SPA's
   },
 });

@@ -1,4 +1,7 @@
+import Sdk from "casdoor-js-sdk/lib/cjs/sdk";
+import { from, mergeMap, Observable, of, tap } from "rxjs";
 import config from "../../../config/config";
+import { configQuery, ConfigQuery } from "../../config/state";
 import {
   AuthenticationStore,
   authenticationStore,
@@ -12,8 +15,9 @@ interface TokenPersistance {
 }
 
 export class AuthenticationService {
-  constructor(private authenticationStore: AuthenticationStore) {
+  constructor(private authenticationStore: AuthenticationStore, private config: ConfigQuery) {
     this.loadTokenFromStorage();
+
   }
 
   isTokenExpired(token: string): boolean {
@@ -66,6 +70,14 @@ export class AuthenticationService {
     this.authenticationStore.setLoading(false);
   }
 
+  loginOidc(): void {
+    this.config.authConfig.subscribe((data) => {
+      console.log(data);
+      const sdk = new Sdk(data);
+      window.open(sdk.getSigninUrl());
+    });
+  }
+
   async refreshToken(accessToken: string, refreshToken: string) {
     try {
       const response = await fetch(`${config.backendUrl}/auth/refresh`, {
@@ -109,5 +121,5 @@ export class AuthenticationService {
 }
 
 export const authenticationService = new AuthenticationService(
-  authenticationStore
+  authenticationStore, configQuery
 );

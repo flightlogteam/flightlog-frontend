@@ -66,6 +66,13 @@ export function createNavigation() {
         action: () => {
           return import("../../../../views/404");
         },
+      }, {
+        name: "Callback",
+        route: "/callback",
+        icon: "404",
+        action: () => {
+          return import("../../../../views/callback");
+        },
       },
     ],
   } as Navigation;

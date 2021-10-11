@@ -1,8 +1,9 @@
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map";
+import { classMap } from "lit/directives/class-map.js";
 import { Subscription } from "rxjs";
-import { authenticationQuery } from "../../shared/authentication/state";
+import { authenticationQuery, authenticationService } from "../../shared/authentication/state";
+import loginIcon from "@carbon/icons/es/login/20";
 import {
   navigationQuery,
   navigationService,
@@ -25,11 +26,7 @@ export class ToolbarComponent extends LitElement {
 
   @property()
   userId = "";
-
-  @property({ attribute: false })
-  currentRoute: Route = navigationQuery.route;
-
-  constructor() {
+  @property({ attribute: false }) currentRoute: Route = navigationQuery.route; constructor() {
     super();
     this.subscriptions.push(
       navigationQuery.mainNavigation.subscribe(
@@ -74,8 +71,18 @@ export class ToolbarComponent extends LitElement {
         <div class="toolbar-right">
           <div class="navigation-items ">${this.navigationElements()}</div>
         </div>
+        <div class="login-button">
+          <div @click="${this.login}" class="navigation-item">
+            <core-icon size="24" .icon="${loginIcon}"></core-icon>
+            <h5>Login</h5>
+          </div>
+        </div>
       </div>
     `;
+  }
+
+  login() {
+    authenticationService.loginOidc();
   }
 
   navigationElements(): TemplateResult {

@@ -1,6 +1,6 @@
 import { LitElement, html, TemplateResult } from "lit";
-import { query } from "lit/decorators.js";
-import { customElement } from "lit/decorators/custom-element";
+import { } from "lit/decorators.js";
+import { customElement, query } from "lit/decorators.js";
 import { Subscription } from "rxjs";
 import {
   ImportResult,
@@ -12,7 +12,7 @@ import componentStyles from "./flightlog-app.styles.scss";
 import { updateMetadata } from "pwa-helpers/metadata";
 
 interface constructableObject {
-  new (): Node;
+  new(): Node;
 }
 
 @customElement("flightlog-app")
