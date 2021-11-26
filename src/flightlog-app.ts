@@ -65,6 +65,7 @@ export class FlightLogApp extends LitElement {
     return html`
       <flightlog-toolbar-component></flightlog-toolbar-component>
       <div id="view-container"></div>
+      <core-footer></core-footer>
     `;
   }
 }

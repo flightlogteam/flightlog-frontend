@@ -30,10 +30,19 @@ export function createNavigation(): Route[] {
       },
     },
     {
-      name: "New Flight",
+      name: "Pilots",
+      icon: "people",
+      route: "/users",
+      navigation: true,
+      action: () => {
+        return import("../../views/users");
+      },
+    },
+    {
+      name: "New flight",
       icon: "add_circle",
       route: "/flights/new",
-      navigation: true,
+      navigation: false,
       action: () => {
         return import("../../views/flights/newflight");
       },
@@ -45,6 +54,15 @@ export function createNavigation(): Route[] {
       navigation: true,
       action: () => {
         return import("../../views/flights/flights");
+      },
+    },
+    {
+      name: "Locations",
+      icon: "place",
+      route: "/locations",
+      navigation: true,
+      action: () => {
+        return import("../../views/locations");
       },
     },
     {

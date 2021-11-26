@@ -21,22 +21,15 @@
   }
 
   @media (max-width: $breakpoint-tablet) {
-    display: block;
-
+    justify-content: space-between;
     .toolbar-left {
       justify-content: center;
 
       h2 {
-        margin-bottom: 0px;
+        margin: 0;
       }
     }
   }
-}
-
-.navigation-items {
-  display: flex;
-  width: 100%;
-  justify-content: center;
 }
 
 .login-button {

@@ -96,8 +96,11 @@ export class AuthenticationService {
   }
 
   logout() {
-    console.log("no stuff left");
     this.keycloak.logout().then(() => this.isAuthenticatedSubject.next(false));
+  }
+
+  changeUser() {
+    window.location.href = this.keycloak.createAccountUrl();
   }
 }
 
