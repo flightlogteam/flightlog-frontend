@@ -19,7 +19,7 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css|\.s(c|a)ss$/,
+        test: /\.css$|\.s(c|a)ss$/,
         use: ["lit-scss-loader", "sass-loader"],
       },
     ],

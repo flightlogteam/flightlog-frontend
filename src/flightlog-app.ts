@@ -1,18 +1,19 @@
 import { LitElement, html, TemplateResult } from "lit";
-import { } from "lit/decorators.js";
+import {} from "lit/decorators.js";
 import { customElement, query } from "lit/decorators.js";
 import { Subscription } from "rxjs";
-import {
-  ImportResult,
-  navigationQuery,
-  Route,
-} from "./shared/state/navigation/state";
 import design from "./shared/styles/application.styles.scss";
 import componentStyles from "./flightlog-app.styles.scss";
 import { updateMetadata } from "pwa-helpers/metadata";
+import { authenticationService } from "./authentication/authentication.service";
+import {
+  ImportResult,
+  navigationService,
+  Route,
+} from "./shared/services/navigation.service";
 
 interface constructableObject {
-  new(): Node;
+  new (): Node;
 }
 
 @customElement("flightlog-app")
@@ -24,8 +25,9 @@ export class FlightLogApp extends LitElement {
 
   constructor() {
     super();
+    console.log(authenticationService);
     this.subscriptions.push(
-      navigationQuery.currentRoute.subscribe((route) => {
+      navigationService.currentRoute$.subscribe((route) => {
         this.currentRoute = route;
         this.loadView();
         updateMetadata({
@@ -55,7 +57,7 @@ export class FlightLogApp extends LitElement {
     }
   }
 
-  currentRoute: Route = navigationQuery.route;
+  currentRoute: Route = navigationService.currentRoute;
 
   static styles = [design, componentStyles];
 

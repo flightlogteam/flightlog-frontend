@@ -1,6 +1,5 @@
 import { RxJSHttpClient } from "rxjs-http-client";
 import config from "../config/config";
-import { authenticationQuery } from "../shared/authentication/state";
 import { TokenInterceptor } from "./tokenInterceptor";
 
 export class HttpClientService {
@@ -14,11 +13,11 @@ export class HttpClientService {
   }
 
   httpClient: RxJSHttpClient = new RxJSHttpClient([
-    new TokenInterceptor(
+    /*new TokenInterceptor(
       () => authenticationQuery.accessToken,
       false,
       config.backendUrl
-    ),
+    ),*/
   ]);
 
   private constructor() {}

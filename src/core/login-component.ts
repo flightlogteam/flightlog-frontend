@@ -1,6 +1,5 @@
 import { html, LitElement, TemplateResult } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { authenticationService } from "../shared/authentication/state";
 
 @customElement("flightlog-login")
 export class LoginComponent extends LitElement {
@@ -36,7 +35,7 @@ export class LoginComponent extends LitElement {
   }
 
   submit(): void {
-    authenticationService.login(this.username, this.password);
+    //authenticationService.login(this.username, this.password);
   }
 
   userNameChanged(): void {

@@ -4,6 +4,6 @@ import { customElement } from "lit/decorators.js";
 @customElement("flightlog-view-notfound")
 export class NotFoundView extends LitElement {
   render(): TemplateResult {
-    return html`Not found works`;
+    return html`Not found works. Something works well`;
   }
 }

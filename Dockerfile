@@ -1,4 +1,4 @@
-FROM node:14.15 as dev
+FROM node:latest as dev
 
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
@@ -32,7 +32,7 @@ RUN apt-get update \
 WORKDIR /src
 
 COPY package*.json ./
-RUN npm install --force
+RUN npm install
 
 COPY . .
 CMD ["npm", "start"]

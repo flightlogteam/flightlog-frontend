@@ -3,6 +3,7 @@
     "serverUrl": "http://localhost:8000",
     "clientId": "f6d3e0a5fd6ee1d8cba2",
     "appName": "flightlog-frontend",
-    "organizationName": "flightlog"
+    "organizationName": "flightlog",
+    "clientSecret": "8eccae11c80e605b5bbcd3d7864ae85d2927b816"
   }
 }
