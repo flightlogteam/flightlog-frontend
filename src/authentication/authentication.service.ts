@@ -11,10 +11,14 @@ import {
   from,
   map,
   mapTo,
+  mergeMap,
   Observable,
   of,
   switchMap,
+  switchMapTo,
+  tap,
 } from "rxjs";
+import { ajax } from "rxjs/ajax";
 import { AccountInfo } from "./models";
 
 interface KeyCloakUserInfo {
@@ -37,6 +41,8 @@ export class AuthenticationService {
     pkceMethod: "S256",
   };
 
+  verify$: Observable<string>;
+
   loginOptions: KeycloakLoginOptions = {
     redirectUri: "http://localhost:8080/callback",
   };
@@ -51,8 +57,11 @@ export class AuthenticationService {
     return this.isAuthenticatedSubject;
   }
 
-  get accessToken$(): Observable<string | undefined> {
-    return of(this.keycloak.token);
+  get accessToken$(): Observable<string> {
+    return this.isAuthenticated$.pipe(
+      filter((auth) => auth),
+      mergeMap(() => of(this.keycloak.token))
+    );
   }
 
   get accountInfo$(): Observable<AccountInfo> {
@@ -82,13 +91,25 @@ export class AuthenticationService {
         } else {
           this.isAuthenticatedSubject.next(true);
         }
-      } else {
       }
-
       setInterval(() => {
         this.keycloak.updateToken(100);
       }, 70000);
     });
+
+    this.verify$ = this.accessToken$.pipe(
+      tap((a) => console.log(a)),
+      mergeMap((token) =>
+        ajax<string>({
+          url: "http://localhost:8083/auth/verify",
+          method: "GET",
+          crossDomain: true,
+          headers: { Authorization: `Bearer ${token}` },
+        }).pipe(map((response) => response.response))
+      )
+    );
+
+    this.verify$.subscribe((res) => console.log(res));
   }
 
   login() {

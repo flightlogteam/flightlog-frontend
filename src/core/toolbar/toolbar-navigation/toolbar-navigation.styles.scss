@@ -1,0 +1,43 @@
+@import "../../../shared/styles/application.styles.scss";
+.navigation-items {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.navigation-item flightlog-icon,
+h5 {
+  display: block;
+  color: #fff;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.navigation-item {
+  cursor: pointer;
+  padding: 8px 16px 8px 16px;
+  margin: 0 8px 0 8px;
+
+  &.active {
+    flightlog-icon,
+    h5 {
+      color: $color-complement-2;
+    }
+  }
+
+  &:hover {
+    flightlog-icon,
+    h5 {
+      color: $color-primary-1;
+    }
+  }
+
+  h5 {
+    margin-top: 4px;
+  }
+
+  flightlog-icon,
+  core-icon {
+    margin-bottom: 4px;
+  }
+}

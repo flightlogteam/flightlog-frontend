@@ -1,0 +1,15 @@
+@import "../../shared/styles/application.styles.scss";
+.footer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  height: 81px;
+  justify-content: center;
+  width: 100%;
+
+  .footer-content {
+    width: 100%;
+    background-color: $color-primary-0;
+    font-family: $secondary-font;
+  }
+}
