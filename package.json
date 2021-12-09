@@ -41,8 +41,10 @@
   "dependencies": {
     "@carbon/icon-helpers": "^10.24.0",
     "@carbon/icons": "^10.40.0",
+    "@material/mwc-button": "^0.25.3",
     "@material/mwc-menu": "^0.25.3",
     "@types/carbon__icon-helpers": "^10.7.2",
+    "@vaadin/vaadin-combo-box": "^22.0.1",
     "keycloak-js": "^15.0.2",
     "lit": "^2.0.2",
     "pwa-helpers": "^0.9.1",

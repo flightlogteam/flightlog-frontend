@@ -1,0 +1,23 @@
+.location {
+  line-height: 2px;
+  margin: 2px;
+  padding: 0px;
+}
+
+.location p.location-detail {
+  color: #888;
+  margin: 0px;
+  padding: 0px;
+  font-size: 10px;
+}
+
+vaadin-item {
+  line-height: 10px;
+}
+
+:host {
+  --lumo-contrast-10pct: rgba(255, 255, 255, 0.1);
+  --lumo-secondary-text-color: #fff;
+  --lumo-contrast-60pct: #fff;
+  --lumo-body-text-color: #fff;
+}

@@ -62,7 +62,7 @@ export function createNavigation(): Route[] {
       route: "/locations",
       navigation: true,
       action: () => {
-        return import("../../views/locations");
+        return import("../../views/locations/locations");
       },
     },
     {
