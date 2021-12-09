@@ -11,4 +11,7 @@ module.exports = merge(common, {
     //stats: "errors-only",
     historyApiFallback: true, // Handy for developing SPA's
   },
+  output: {
+    publicPath: "/"
+  }
 });

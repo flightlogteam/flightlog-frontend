@@ -66,6 +66,16 @@ export function createNavigation(): Route[] {
       },
     },
     {
+      name: "Create Location",
+      icon: "place",
+      route: "/locations/create",
+      action: () => {
+        return import(
+          "../../views/locations/create-location/create-location.component"
+        );
+      },
+    },
+    {
       name: "Unauthorized",
       route: "/401",
       icon: "401",
@@ -100,11 +110,21 @@ export class NavigationService {
   private routeSubject: Subject<Route> = new ReplaySubject(1);
 
   constructor() {
-    const route = this.routes.find((item) => item.route === "/");
-    if (route === null) {
-      throw new Error("Unable to find default route");
+    const initialPath = window.location.pathname;
+
+    const initialRoute = this.routes.find(
+      (route) => route.route === initialPath
+    );
+
+    if (initialRoute) {
+      this._currentRoute = initialRoute;
+    } else {
+      const route = this.routes.find((item) => item.route === "/");
+      if (route === null) {
+        throw new Error("Unable to find default route");
+      }
+      this._currentRoute = route;
     }
-    this._currentRoute = route;
 
     this.currentRoute$.subscribe((route) => {
       this._currentRoute = route;
