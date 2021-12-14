@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { html, LitElement, TemplateResult } from "lit";
-import { queryAsync, customElement } from "lit/decorators.js";
-import "@vaadin/combo-box";
-import { ComboBox, ComboBoxItemModel } from "@vaadin/combo-box";
-import style from "./location-search.component.styles.scss";
-import { debounceTime, mergeMap, Subject } from "rxjs";
+import { html, LitElement, TemplateResult } from 'lit';
+import { queryAsync, customElement, property } from 'lit/decorators.js';
+import '@vaadin/combo-box';
+import { ComboBox, ComboBoxItemModel } from '@vaadin/combo-box';
+import style from './location-search.component.styles.scss';
+import { debounceTime, mergeMap, Subject } from 'rxjs';
 import {
   Location,
   locationSearchHttpClient,
-} from "../../services/loaction.http.service";
+} from '../../services/loaction.http.service';
 
 interface SearchParameters {
   page: number;
@@ -16,14 +16,24 @@ interface SearchParameters {
   filter: string;
 }
 
-@customElement("location-search")
+/**
+ *  EVENT: location-selected @type {Location}
+ *
+ * */
+@customElement('location-search')
 export class LocationSearch extends LitElement {
   // eslint-disable-next-line
   callback: (res: any[], size: number) => void;
   dataLoadSubject: Subject<SearchParameters> = new Subject<SearchParameters>();
 
-  @queryAsync("#location-combo")
+  @queryAsync('#location-combo')
   comboElement: Promise<ComboBox>;
+
+  @property()
+  label = 'Location';
+
+  @property()
+  placeholder = 'location...';
 
   dataFetch = (
     search: SearchParameters,
@@ -42,8 +52,8 @@ export class LocationSearch extends LitElement {
   constructor() {
     super();
     this.comboElement.then((element) => {
-      element.itemLabelPath = "skrivemåte";
-      element.itemIdPath = "stedsnummer";
+      element.itemLabelPath = 'skrivemåte';
+      element.itemIdPath = 'stedsnummer';
       element.renderer = (
         root: HTMLElement,
         _: ComboBox,
@@ -53,7 +63,9 @@ export class LocationSearch extends LitElement {
         root.innerHTML = `
         <div class="location">
           <b>${location.skrivemåte}</b><br>
-          <p style="margin: 2px 0 2px 0" class="location-detail">${location.fylker[0].fylkesnavn}, ${location.kommuner[0].kommunenavn}</p>
+          <p style="margin: 2px 0 2px 0" class="location-detail">${
+            location.fylker[0]?.fylkesnavn || ''
+          }, ${location.kommuner[0].kommunenavn}</p>
         </div>`;
       };
     });
@@ -82,7 +94,8 @@ export class LocationSearch extends LitElement {
       <vaadin-combo-box
         @selected-item-changed="${this.valueChanged}"
         id="location-combo"
-        placeholder="Skriv inn lokasjon..."
+        placeholder="${this.placeholder}"
+        label="${this.label}"
         .dataProvider="${this.dataFetch}"
       >
       </vaadin-combo-box>
@@ -92,7 +105,7 @@ export class LocationSearch extends LitElement {
   valueChanged(event: CustomEvent) {
     const location = event.detail.value as Location;
     this.dispatchEvent(
-      new CustomEvent("location-selected", { detail: location })
+      new CustomEvent('location-selected', { detail: location })
     );
   }
 

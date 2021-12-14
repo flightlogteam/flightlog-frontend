@@ -15,9 +15,9 @@ vaadin-item {
   line-height: 10px;
 }
 
-:host {
-  --lumo-contrast-10pct: rgba(255, 255, 255, 0.1);
-  --lumo-secondary-text-color: #fff;
-  --lumo-contrast-60pct: #fff;
-  --lumo-body-text-color: #fff;
+html {
+}
+
+vaadin-combo-box {
+  width: 100%;
 }

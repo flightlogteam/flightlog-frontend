@@ -42,11 +42,9 @@ html {
 }
 
 mwc-button {
-  //--mdc-theme-primary: $color-primary-0;
-  //--mdc-theme-on-primary: $color-primary-2;
-  --mdc-theme-primary: #ffbb53;
+  --mdc-theme-primary: #{$color-complement-1};
   --mdc-theme-on-primary: black;
-  --mdc-button-disabled-ink-color: aliceblue;
+  //--mdc-theme-on-primary: black;
 }
 
 body {

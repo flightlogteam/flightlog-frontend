@@ -10,6 +10,6 @@ export class CallbackViewComponent extends LitElement {
 
   constructor() {
     super();
-    navigationService.setCurrentRoute("/");
+    //navigationService.setCurrentRoute("/");
   }
 }

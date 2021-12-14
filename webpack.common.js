@@ -26,6 +26,14 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".js"],
+    alias: {
+      'ol-styles': path.resolve(__dirname, "./node_modules/ol/ol.css")
+    },
+    modules: [
+      path.resolve(__dirname, ""),
+      path.resolve(__dirname, "./src"),
+      path.resolve(__dirname, "./node_modules")
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({

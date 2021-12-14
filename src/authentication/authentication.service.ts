@@ -36,7 +36,7 @@ export class AuthenticationService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
   initOptions: KeycloakInitOptions = {
-    redirectUri: "http://localhost:8080/callback",
+    redirectUri: this.getCallback(),
     onLoad: "check-sso",
     pkceMethod: "S256",
   };
@@ -44,7 +44,7 @@ export class AuthenticationService {
   verify$: Observable<string>;
 
   loginOptions: KeycloakLoginOptions = {
-    redirectUri: "http://localhost:8080/callback",
+    redirectUri: this.getCallback(),
   };
 
   config: KeycloakConfig = {
@@ -52,6 +52,10 @@ export class AuthenticationService {
     realm: "test",
     clientId: "test",
   };
+
+  private getCallback(): string {
+    return window.location.toString();
+  }
 
   get isAuthenticated$(): Observable<boolean> {
     return this.isAuthenticatedSubject;
