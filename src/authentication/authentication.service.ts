@@ -1,10 +1,10 @@
-import Keycloak from "keycloak-js";
+import Keycloak from 'keycloak-js';
 import {
   KeycloakConfig,
   KeycloakInitOptions,
   KeycloakInstance,
   KeycloakLoginOptions,
-} from "keycloak-js";
+} from 'keycloak-js';
 import {
   BehaviorSubject,
   filter,
@@ -17,9 +17,9 @@ import {
   switchMap,
   switchMapTo,
   tap,
-} from "rxjs";
-import { ajax } from "rxjs/ajax";
-import { AccountInfo } from "./models";
+} from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { AccountInfo } from './models';
 
 interface KeyCloakUserInfo {
   email: string;
@@ -37,8 +37,8 @@ export class AuthenticationService {
 
   initOptions: KeycloakInitOptions = {
     redirectUri: this.getCallback(),
-    onLoad: "check-sso",
-    pkceMethod: "S256",
+    onLoad: 'check-sso',
+    pkceMethod: 'S256',
   };
 
   verify$: Observable<string>;
@@ -48,9 +48,9 @@ export class AuthenticationService {
   };
 
   config: KeycloakConfig = {
-    url: "http://localhost:8082/auth",
-    realm: "test",
-    clientId: "test",
+    url: 'http://localhost:8082/auth',
+    realm: 'test',
+    clientId: 'test',
   };
 
   private getCallback(): string {
@@ -63,14 +63,14 @@ export class AuthenticationService {
 
   get accessToken$(): Observable<string> {
     return this.isAuthenticated$.pipe(
-      filter((auth) => auth),
+      filter(auth => auth),
       mergeMap(() => of(this.keycloak.token))
     );
   }
 
   get accountInfo$(): Observable<AccountInfo> {
     return this.isAuthenticated$.pipe(
-      filter((loggedIn) => loggedIn),
+      filter(loggedIn => loggedIn),
       switchMap(() => from(this.keycloak.loadUserInfo())),
       mapTo(this.keycloak.userInfo),
       map(() => {
@@ -86,12 +86,12 @@ export class AuthenticationService {
 
   constructor() {
     this.keycloak = Keycloak(this.config);
-    this.keycloak.init(this.initOptions).then((authenticated) => {
+    this.keycloak.init(this.initOptions).then(authenticated => {
       if (authenticated) {
         if (!this.keycloak.token) {
           this.keycloak
             .updateToken(100)
-            .then((status) => this.isAuthenticatedSubject.next(status));
+            .then(status => this.isAuthenticatedSubject.next(status));
         } else {
           this.isAuthenticatedSubject.next(true);
         }
@@ -102,18 +102,17 @@ export class AuthenticationService {
     });
 
     this.verify$ = this.accessToken$.pipe(
-      tap((a) => console.log(a)),
-      mergeMap((token) =>
+      mergeMap(token =>
         ajax<string>({
-          url: "http://localhost:8083/auth/verify",
-          method: "GET",
+          url: 'http://localhost:8083/auth/verify',
+          method: 'GET',
           crossDomain: true,
           headers: { Authorization: `Bearer ${token}` },
-        }).pipe(map((response) => response.response))
+        }).pipe(map(response => response.response))
       )
     );
 
-    this.verify$.subscribe((res) => console.log(res));
+    this.verify$.subscribe(res => console.log(res));
   }
 
   login() {

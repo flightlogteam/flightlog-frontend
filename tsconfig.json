@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
-
     /* Basic Options */
     // "incremental": true,                         /* Enable incremental compilation */
     "allowSyntheticDefaultImports": true,
     "target": "es2020",
-    "module": "es2020",
+    "module": "commonjs",
     "lib": ["es2020", "es2017", "dom", "dom.iterable"],
     // "lib": [],                                   /* Specify library files to be included in the compilation. */
     // "allowJs": true,                             /* Allow javascript files to be compiled. */
@@ -22,7 +21,7 @@
     // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */
     // "removeComments": true,                      /* Do not emit comments to output. */
     // "noEmit": true,                              /* Do not emit outputs. */
-    // "importHelpers": true,                       /* Import emit helpers from 'tslib'. */
+    "importHelpers": true,                       /* Import emit helpers from 'tslib'. */
     // "downlevelIteration": true,                  /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
     // "isolatedModules": true,                     /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
 
@@ -52,8 +51,7 @@
     //"src/types"
     //] /* List of folders to include type definitions from. */,
     //"types": [
-    //"./node_modules/lit/",
-    //"src/types/*.d.ts"
+      ////"./node_modules/lit/",
     //] /* Type declaration files to be included in compilation. */,
     // "allowSyntheticDefaultImports": true,        /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
@@ -76,10 +74,9 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/types/*.d.ts",
     "node_modules/lit-scss-loader/types.d.ts",
     "node_modules/lit/decorators.d.ts",
-    "src/core/icon/index.d.ts"
+    "src/types/*.d.ts"
   ],
   "exclude": []
 }
