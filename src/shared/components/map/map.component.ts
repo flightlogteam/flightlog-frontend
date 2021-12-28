@@ -17,14 +17,22 @@ import { toSVG } from '@carbon/icon-helpers';
 import { Feature } from 'ol';
 import Point from 'ol/geom/Point';
 import Geometry from 'ol/geom/Geometry';
-import { Observable, Subscription } from 'rxjs';
+import { first, Observable, ReplaySubject, Subscription } from 'rxjs';
+
+export interface SetLocationRequest {
+  lat: number;
+  lon: number;
+  addMarker?: boolean;
+  zoomLevel?: number;
+}
 
 @customElement('flightlog-map')
 export class FlightlogMapComponent extends LitElement {
   @queryAsync('#map-target')
   mapTarget: Promise<HTMLDivElement>;
 
-  map: Map | undefined;
+  map$ = new ReplaySubject<Map>(1);
+
   markerLayer: BaseLayer | undefined;
   currentMarker: Feature<Point> | undefined;
   vectorSource: SourceVector<Geometry> | undefined;
@@ -36,9 +44,19 @@ export class FlightlogMapComponent extends LitElement {
 
   static styles = [style];
   @property()
-  set locationInput(observable: Observable<[number, number]>) {
+  set locationInput(observable: Observable<SetLocationRequest>) {
     this.subscriptions.push(
-      observable.subscribe((coordinates) => this.setLocation(coordinates))
+      observable.subscribe(request => {
+        this.setLocation([request.lon, request.lat], request.zoomLevel);
+        if (request.addMarker) {
+          const transformedCoordinates = transform(
+            [request.lon, request.lat],
+            'EPSG:4326',
+            'EPSG:3857'
+          );
+          this.addMarker(transformedCoordinates);
+        }
+      })
     );
   }
 
@@ -51,28 +69,19 @@ export class FlightlogMapComponent extends LitElement {
 
   updated(changedProps: globalThis.Map<string | number | symbol, unknown>) {
     super.updated(changedProps);
-    console.log(changedProps);
-    if (this.map) {
-      this.map.updateSize();
-    }
-
-    for (const key in changedProps.keys) {
-      if (key === 'height') {
-        console.log('someone set the key');
-      }
-    }
+    this.map$.pipe(first()).subscribe(map => map.updateSize());
   }
 
-  setLocation(coordinates: [number, number]) {
-    if (this.map) {
-      this.map.setView(
+  setLocation(coordinates: [number, number], zoomLevel?: number) {
+    this.map$.pipe(first()).subscribe(map => {
+      map.setView(
         new View({
           projection: 'EPSG:3857',
           center: fromLonLat(coordinates),
-          zoom: 12,
+          zoom: zoomLevel || 12,
         })
       );
-    }
+    });
   }
 
   disconnectedCallback() {}
@@ -80,7 +89,7 @@ export class FlightlogMapComponent extends LitElement {
   constructor() {
     super();
 
-    this.mapTarget.then((target) => {
+    this.mapTarget.then(target => {
       const view = new View({
         projection: 'EPSG:3857',
         center: [1891337, 9772319],
@@ -89,7 +98,7 @@ export class FlightlogMapComponent extends LitElement {
       //End View definitions
 
       //Start: Map definitions
-      this.map = new Map({
+      const map = new Map({
         target: target,
         view,
       });
@@ -97,7 +106,7 @@ export class FlightlogMapComponent extends LitElement {
       const _url = 'http://opencache.statkart.no/gatekeeper/gk/gk.open?';
 
       //Start: source
-      var sourceWMSC = new TileWMS({
+      const sourceWMSC = new TileWMS({
         url: _url,
         params: {
           LAYERS: 'norges_grunnkart',
@@ -111,9 +120,10 @@ export class FlightlogMapComponent extends LitElement {
         source: sourceWMSC,
       });
 
-      this.map.addLayer(tileLayerWMSC);
-      this.map.on('singleclick', (event) => {
+      map.addLayer(tileLayerWMSC);
+      map.on('singleclick', event => {
         this.addMarker(event.coordinate);
+        this.dispatchLocationEvent(event.coordinate);
       });
 
       const svg = toSVG(markerIcon).outerHTML;
@@ -129,16 +139,26 @@ export class FlightlogMapComponent extends LitElement {
           }),
         }),
       });
-      this.map.addLayer(this.markerLayer);
+      map.addLayer(this.markerLayer);
+
+      this.map$.next(map);
     });
   }
 
+  /**
+   * USES EPSG:3857-coordinate system
+   * */
   private addMarker(coordinate: Coordinate) {
-    if (this.currentMarker) {
-      this.vectorSource.removeFeature(this.currentMarker);
-    }
-    this.currentMarker = new Feature(new Point(coordinate));
-    this.vectorSource.addFeature(this.currentMarker);
+    this.map$.pipe(first()).subscribe(() => {
+      if (this.currentMarker) {
+        this.vectorSource.removeFeature(this.currentMarker);
+      }
+      this.currentMarker = new Feature(new Point(coordinate));
+      this.vectorSource.addFeature(this.currentMarker);
+    });
+  }
+
+  private dispatchLocationEvent(coordinate: Coordinate) {
     this.dispatchEvent(
       new CustomEvent('map-selected-location', {
         detail: {

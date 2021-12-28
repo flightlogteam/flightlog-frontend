@@ -1,5 +1,4 @@
 import { html, LitElement, TemplateResult } from 'lit';
-import { CreationComponent } from './interface';
 import 'src/shared/components/location-search/location-search.component';
 import { Location } from 'src/shared/services/loaction.http.service';
 import {
@@ -13,24 +12,24 @@ import style from './where.styles.scss';
 import 'src/shared/components/map/map.component';
 import {
   debounceTime,
+  first,
   fromEvent,
   merge,
-  Observable,
+  ReplaySubject,
   Subject,
   Subscription,
+  withLatestFrom,
 } from 'rxjs';
 import '@material/mwc-textfield';
 import '@material/mwc-textarea';
 import { locationService } from 'src/location/services/location.service';
 import { TextField } from '@material/mwc-textfield';
-import { LocationInfo } from 'src/location/models/locationinfo';
 import { locationCreationService } from 'src/location/services/location-creation.service';
+import { LocationInfo } from 'src/location/models/locationinfo';
+import { SetLocationRequest } from 'src/shared/components/map/map.component';
 
 @customElement('flightlog-create-location')
-export class FlightlogCreateLocationWhereComponent
-  extends LitElement
-  implements CreationComponent
-{
+export class FlightlogCreateLocationWhereComponent extends LitElement {
   private subscriptions: Subscription[] = [];
 
   tabIcon(): string {
@@ -64,30 +63,41 @@ export class FlightlogCreateLocationWhereComponent
   @query('#location-description')
   locationDescription: TextField;
 
-  locationChangeSubject = new Subject<[number, number]>();
-
-  @state()
-  currentLocation: Location | undefined;
+  locationChangeSubject = new Subject<SetLocationRequest>();
 
   @state()
   mapHeight = 500;
 
-  formObservable: Observable<LocationInfo> | undefined;
+  currentLocation$ = new ReplaySubject<LocationInfo>(1);
 
   static styles = [style];
 
-  isValidated(): boolean {
-    return this.currentLocation !== undefined;
-  }
-
   constructor() {
     super();
-    this.locationContainer.then((container) => {
+    this.locationContainer.then(container => {
       this.mapHeight = container.clientHeight - 100;
     });
   }
 
   firstUpdated() {
+    // Load existing data
+    locationCreationService
+      .registerLocation(this.locationIndex)
+      .pipe(first())
+      .subscribe(info => {
+        if (info) {
+          this.locationKommune.value = info.kommune;
+          this.locationFylke.value = info.fylke;
+          this.locationElevation.value = `${info.elevation}`;
+          this.locationNameField.value = info.name;
+
+          this.locationChangeSubject.next({
+            lat: info.lat,
+            lon: info.lon,
+            addMarker: true,
+          });
+        }
+      });
     this.subscriptions.push(
       merge(
         fromEvent(this.locationNameField, 'input'),
@@ -95,32 +105,42 @@ export class FlightlogCreateLocationWhereComponent
         fromEvent(this.locationKommune, 'input'),
         fromEvent(this.locationFylke, 'input'),
         fromEvent(this.locationShortDescription, 'input'),
-        fromEvent(this.locationDescription, 'input')
+        fromEvent(this.locationDescription, 'input'),
+        this.currentLocation$
       )
-        .pipe(debounceTime(200))
-        .subscribe(() => {
-          /*locationCreationService.setStartLocation({
-          name: this.locationNameField.value,
-          elevation: Number.parseFloat(this.locationElevation.value),
-          lat:
-        }, this.locationIndex)*/
+        .pipe(debounceTime(200), withLatestFrom(this.currentLocation$))
+        .subscribe(([_, currentLocation]) => {
+          locationCreationService.setStartLocation(
+            {
+              name: this.locationNameField.value,
+              elevation: Number.parseFloat(this.locationElevation.value),
+              lat: currentLocation.lat,
+              lon: currentLocation.lon,
+              kommune: currentLocation.kommune,
+              fylke: currentLocation.fylke,
+            },
+            this.locationIndex
+          );
         })
     );
+
+    // Push new data
   }
 
   // Location selected in the location-search-component
   locationSelected(locationEvent: CustomEvent<Location>): void {
-    this.locationChangeSubject.next([
-      locationEvent.detail.representasjonspunkt.øst,
-      locationEvent.detail.representasjonspunkt.nord,
-    ]);
+    this.locationChangeSubject.next({
+      lat: locationEvent.detail.representasjonspunkt.nord,
+      lon: locationEvent.detail.representasjonspunkt.øst,
+    });
     this.dispatchEvent(
       new CustomEvent('location-selected', { detail: locationEvent.detail })
     );
   }
 
   disconnectedCallback() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
+    console.log('Removing component from DOM');
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   // Coordinates are delivered lon, lat
@@ -128,7 +148,8 @@ export class FlightlogCreateLocationWhereComponent
     coordinates: CustomEvent<{ location: [number, number] }>
   ) {
     const [lon, lat] = coordinates.detail.location;
-    locationService.locationLookup(lat, lon).subscribe((location) => {
+    locationService.locationLookup(lat, lon).subscribe(location => {
+      this.currentLocation$.next(location);
       this.locationNameField.value = location.name;
       this.locationElevation.value = `${location.elevation}`;
       this.locationKommune.value = location.kommune;

@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, ReplaySubject, Subject } from 'rxjs';
 import { LocationInfo } from '../models/locationinfo';
 import {
   LocationBackendHttpService,
@@ -11,31 +11,29 @@ export interface LocationCreationError {
 }
 
 export class LocationCreationService {
-  private _locations: LocationInfo[] = [];
-
-  private validationSubject = new Subject<boolean>();
+  private locations$: Subject<LocationInfo>[] = [];
 
   constructor(private locationBackendHttpService: LocationBackendHttpService) {}
 
-  formIsSubmittable$: Observable<boolean> = this.validationSubject;
-
-  /** Sets a location. Index=0 (default) is a start. All locations with a higher index is a landing */
-  setStartLocation(location: LocationInfo, index = 0): LocationCreationError[] {
-    this._locations[index] = location;
-    this.validateForm();
-    return this.validateLocationInfo(location);
+  registerLocation(index: number): Observable<LocationInfo> {
+    if (!this.locations$[index]) {
+      console.log('location was not found. Registered new');
+      this.locations$[index] = new BehaviorSubject<LocationInfo | undefined>(
+        undefined
+      );
+    }
+    return this.locations$[index];
   }
 
-  private validateForm() {
-    for (const location of this._locations) {
-      if (location) {
-        if (this.validateLocationInfo(location).length > 0) {
-          this.validationSubject.next(false);
-          return;
-        }
-      }
-    }
-    this.validationSubject.next(true);
+  getErrors$(index: number): Observable<LocationCreationError[]> {
+    return this.locations$[index].pipe(
+      map(location => this.validateLocationInfo(location))
+    );
+  }
+
+  /** Sets a location. Index=0 (default) is a start. All locations with a higher index is a landing */
+  setStartLocation(location: LocationInfo, index = 0) {
+    this.locations$[index].next(location);
   }
 
   private validateLocationInfo(
