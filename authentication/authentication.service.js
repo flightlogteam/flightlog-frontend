@@ -22,12 +22,12 @@ class AuthenticationService {
             clientId: 'test',
         };
         this.keycloak = (0, keycloak_js_1.default)(this.config);
-        this.keycloak.init(this.initOptions).then((authenticated) => {
+        this.keycloak.init(this.initOptions).then(authenticated => {
             if (authenticated) {
                 if (!this.keycloak.token) {
                     this.keycloak
                         .updateToken(100)
-                        .then((status) => this.isAuthenticatedSubject.next(status));
+                        .then(status => this.isAuthenticatedSubject.next(status));
                 }
                 else {
                     this.isAuthenticatedSubject.next(true);
@@ -37,13 +37,13 @@ class AuthenticationService {
                 this.keycloak.updateToken(100);
             }, 70000);
         });
-        this.verify$ = this.accessToken$.pipe((0, rxjs_1.mergeMap)((token) => (0, ajax_1.ajax)({
+        this.verify$ = this.accessToken$.pipe((0, rxjs_1.mergeMap)(token => (0, ajax_1.ajax)({
             url: 'http://localhost:8083/auth/verify',
             method: 'GET',
             crossDomain: true,
             headers: { Authorization: `Bearer ${token}` },
-        }).pipe((0, rxjs_1.map)((response) => response.response))));
-        this.verify$.subscribe((res) => console.log(res));
+        }).pipe((0, rxjs_1.map)(response => response.response))));
+        this.verify$.subscribe(res => console.log(res));
     }
     getCallback() {
         return window.location.toString();
@@ -52,10 +52,10 @@ class AuthenticationService {
         return this.isAuthenticatedSubject;
     }
     get accessToken$() {
-        return this.isAuthenticated$.pipe((0, rxjs_1.filter)((auth) => auth), (0, rxjs_1.mergeMap)(() => (0, rxjs_1.of)(this.keycloak.token)));
+        return this.isAuthenticated$.pipe((0, rxjs_1.filter)(auth => auth), (0, rxjs_1.mergeMap)(() => (0, rxjs_1.of)(this.keycloak.token)));
     }
     get accountInfo$() {
-        return this.isAuthenticated$.pipe((0, rxjs_1.filter)((loggedIn) => loggedIn), (0, rxjs_1.switchMap)(() => (0, rxjs_1.from)(this.keycloak.loadUserInfo())), (0, rxjs_1.mapTo)(this.keycloak.userInfo), (0, rxjs_1.map)(() => {
+        return this.isAuthenticated$.pipe((0, rxjs_1.filter)(loggedIn => loggedIn), (0, rxjs_1.switchMap)(() => (0, rxjs_1.from)(this.keycloak.loadUserInfo())), (0, rxjs_1.mapTo)(this.keycloak.userInfo), (0, rxjs_1.map)(() => {
             const info = this.keycloak.userInfo;
             return {
                 email: info.email,

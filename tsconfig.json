@@ -5,7 +5,7 @@
     // "incremental": true,                         /* Enable incremental compilation */
     "allowSyntheticDefaultImports": true,
     "target": "es2020",
-    "module": "commonjs",
+    "module": "es2020",
     "lib": ["es2020", "es2017", "dom", "dom.iterable"],
     // "lib": [],                                   /* Specify library files to be included in the compilation. */
     // "allowJs": true,                             /* Allow javascript files to be compiled. */
@@ -15,7 +15,7 @@
     //"declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
     "sourceMap": true /* Generates corresponding '.map' file. */,
     // "outFile": "./",                             /* Concatenate and emit output to single file. */
-    "outDir": "./" /* Redirect output structure to the directory. */,
+    "outDir": "./dist/tsc" /* Redirect output structure to the directory. */,
     "rootDir": "./src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
     // "composite": true,                           /* Enable project compilation */
     // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */
