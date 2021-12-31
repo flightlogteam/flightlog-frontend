@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map } from 'rxjs/operators';
+import { Start } from '../models/start';
 
 export class LocationSearchHttpClient {
   locationSearch(
@@ -14,7 +15,7 @@ export class LocationSearchHttpClient {
       }`,
       crossDomain: true,
       method: 'GET',
-    }).pipe(map((item) => item.response));
+    }).pipe(map(item => item.response));
   }
 
   locationDetailByLocationId(
@@ -24,7 +25,7 @@ export class LocationSearchHttpClient {
       url: `https://ws.geonorge.no/stedsnavn/v1/sted?stedsnummer=${stedsnummer}&utkoordsys=4258&treffPerSide=10&side=1`,
       crossDomain: true,
       method: 'GET',
-    }).pipe(map((item) => item.response));
+    }).pipe(map(item => item.response));
   }
 
   pointSearch(lat: number, lon: number): Observable<PointSearchResponse> {
@@ -32,7 +33,7 @@ export class LocationSearchHttpClient {
       url: `https://ws.geonorge.no/stedsnavn/v1/punkt?nord=${lat}&ost=${lon}&koordsys=4326&radius=500&utkoordsys=4258&treffPerSide=10&side=1`,
       crossDomain: true,
       method: 'GET',
-    }).pipe(map((item) => item.response));
+    }).pipe(map(item => item.response));
   }
 
   getElevation(lat: number, lon: number): Observable<number> {
@@ -40,7 +41,7 @@ export class LocationSearchHttpClient {
       url: `https://ws.geonorge.no/hoydedata/v1/punkt?nord=${lat}&koordsys=4326&ost=${lon}&geojson=false`,
       crossDomain: true,
       method: 'GET',
-    }).pipe(map((item) => item.response.punkter[0].z));
+    }).pipe(map(item => item.response.punkter[0].z));
   }
 }
 

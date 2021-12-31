@@ -33,10 +33,7 @@ export class FlightlogWindDirectionComponent extends LitElement {
 
   @property()
   set optimalDirection(item: number) {
-    const binary = item.toString(2);
-    for (let i = 23; i >= 0; i--) {
-      this.fieldColors[0] = binary[i] === '0' ? 1 : 2;
-    }
+    this.applyNumberToFieldColors(item, 2);
     this.reflectFieldColors();
   }
 
@@ -44,10 +41,7 @@ export class FlightlogWindDirectionComponent extends LitElement {
 
   @property()
   set subOptimalDirection(item: number) {
-    const binary = item.toString(2);
-    for (let i = 23; i >= 0; i--) {
-      this.fieldColors[0] = binary[i] === '0' ? 1 : 3;
-    }
+    this.applyNumberToFieldColors(item, 3);
     this.reflectFieldColors();
   }
 
@@ -64,18 +58,20 @@ export class FlightlogWindDirectionComponent extends LitElement {
   }
 
   firstUpdated() {
-    this.subscriptions.push(
-      fromEvent(this.pathElements, 'click')
-        .pipe(
-          filter(
-            event => !(event.target as SVGPathElement).id.startsWith('path')
-          ),
-          map(event => event.target as SVGPathElement)
-        )
-        .subscribe(path => {
-          this.toggleColor(path);
-        })
-    );
+    this.canary.then(() => {
+      this.subscriptions.push(
+        fromEvent(this.pathElements, 'click')
+          .pipe(
+            filter(
+              event => !(event.target as SVGPathElement).id.startsWith('path')
+            ),
+            map(event => event.target as SVGPathElement)
+          )
+          .subscribe(path => {
+            this.toggleColor(path);
+          })
+      );
+    });
   }
 
   disconnectedCallback() {
@@ -137,12 +133,24 @@ export class FlightlogWindDirectionComponent extends LitElement {
   }
 
   private reflectFieldColors() {
-    for (let i = 1; i <= 24; i++) {
-      const id = i < 10 ? `0${i}` : `${i}`;
-      const path = this.shadowRoot.getElementById(id);
-      if (path) {
-        const mapping = this.fieldStatusToMapping(this.fieldColors[i - 1]);
-        path.style.fill = mapping.value;
+    this.canary.then(() => {
+      for (let i = 1; i <= 24; i++) {
+        const id = i < 10 ? `0${i}` : `${i}`;
+        const path = this.shadowRoot.getElementById(id);
+        if (path) {
+          const mapping = this.fieldStatusToMapping(this.fieldColors[i - 1]);
+          path.style.fill = mapping.value;
+        }
+      }
+    });
+  }
+
+  private applyNumberToFieldColors(value: number, color: fieldStatus) {
+    const binary = value.toString(2).split('').reverse();
+
+    for (let i = 0; i < binary.length; i++) {
+      if (binary[i] === '1') {
+        this.fieldColors[i] = color;
       }
     }
   }
@@ -155,6 +163,7 @@ export class FlightlogWindDirectionComponent extends LitElement {
     for (let i = 23; i >= 0; i--) {
       if (this.fieldColors[i] == 2) {
         result.optimal += 1 << i;
+        continue;
       }
 
       if (this.fieldColors[i] == 3) {

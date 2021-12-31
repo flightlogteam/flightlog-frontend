@@ -1,4 +1,14 @@
-import { BehaviorSubject, map, Observable, ReplaySubject, Subject } from 'rxjs';
+import {
+  BehaviorSubject,
+  combineLatest,
+  map,
+  mergeMap,
+  Observable,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
+import { Start } from 'src/shared/models/start';
+import { locationInfoToLocation } from '../mappers/startMapper';
 import { LocationInfo } from '../models/locationinfo';
 import {
   LocationBackendHttpService,
@@ -15,9 +25,11 @@ export class LocationCreationService {
 
   constructor(private locationBackendHttpService: LocationBackendHttpService) {}
 
+  optimalDirection = 0;
+  suboptimalDirection = 0;
+
   registerLocation(index: number): Observable<LocationInfo> {
     if (!this.locations$[index]) {
-      console.log('location was not found. Registered new');
       this.locations$[index] = new BehaviorSubject<LocationInfo | undefined>(
         undefined
       );
@@ -31,9 +43,31 @@ export class LocationCreationService {
     );
   }
 
+  setDirection(optimal: number, suboptimal: number) {
+    this.optimalDirection = optimal;
+    this.suboptimalDirection = suboptimal;
+  }
+
   /** Sets a location. Index=0 (default) is a start. All locations with a higher index is a landing */
   setStartLocation(location: LocationInfo, index = 0) {
     this.locations$[index].next(location);
+  }
+
+  storeLocation(): Observable<number> {
+    return combineLatest(this.locations$).pipe(
+      mergeMap(locations => {
+        const start: Start = {
+          OptimalDirections: this.optimalDirection,
+          SuboptimalDirections: this.suboptimalDirection,
+          StartLocation: locationInfoToLocation(locations[0]),
+          Landings: locations
+            .slice(1)
+            .map(location => locationInfoToLocation(location)),
+        };
+
+        return this.locationBackendHttpService.createStart(start);
+      })
+    );
   }
 
   private validateLocationInfo(
