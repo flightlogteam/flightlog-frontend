@@ -9,14 +9,13 @@ import {
   BehaviorSubject,
   filter,
   from,
+  iif,
   map,
   mapTo,
   mergeMap,
   Observable,
   of,
   switchMap,
-  switchMapTo,
-  tap,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { AccountInfo } from './models';
@@ -34,6 +33,8 @@ export class AuthenticationService {
   keycloak: KeycloakInstance;
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+
+  authorizationHeader$: Observable<string>;
 
   initOptions: KeycloakInitOptions = {
     redirectUri: this.getCallback(),
@@ -109,6 +110,16 @@ export class AuthenticationService {
           crossDomain: true,
           headers: { Authorization: `Bearer ${token}` },
         }).pipe(map(response => response.response))
+      )
+    );
+
+    this.authorizationHeader$ = this.isAuthenticated$.pipe(
+      mergeMap(authenticated =>
+        iif(
+          () => authenticated,
+          this.accessToken$.pipe(map(token => `Bearer ${token}`)),
+          of(undefined)
+        )
       )
     );
 

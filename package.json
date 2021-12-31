@@ -33,6 +33,7 @@
     "keycloak-js": "^15.0.2",
     "lit": "^2.0.2",
     "ol": "^6.9.0",
+    "patternfly-webcomponents": "^0.3.0",
     "pwa-helpers": "^0.9.1",
     "rxjs": "^7.1.0",
     "rxjs-http-client": "^1.5.4"

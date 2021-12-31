@@ -7,6 +7,7 @@ import 'src/location/components/creation/where';
 import '@material/mwc-button';
 import style from './create-location.component.styles.scss';
 import 'src/shared/components/wind-direction/wind-direction.component';
+import { locationCreationService } from 'src/location/services/location-creation.service';
 
 @customElement('location-creation-view')
 export class CreateLocationComponent extends LitElement {
@@ -17,7 +18,6 @@ export class CreateLocationComponent extends LitElement {
   creationDiv: Promise<HTMLElement>;
 
   tabChanged(index: CustomEvent<{ index: number }>) {
-    console.log(index.detail.index);
     this._currentIndex = index.detail.index;
   }
 
@@ -32,9 +32,9 @@ export class CreateLocationComponent extends LitElement {
 
   render(): TemplateResult {
     return html`<container-component>
-      <flightlog-wind-direction modifyable></flightlog-wind-direction>
       <mwc-tab-bar @MDCTabBar:activated="${this.tabChanged}">
         <mwc-tab label="Start" icon="flight_takeoff"></mwc-tab>
+        <mwc-tab label="Direction" icon="explore"></mwc-tab>
         <mwc-tab label="Landings" icon="flight_land"></mwc-tab>
       </mwc-tab-bar>
 
@@ -50,10 +50,24 @@ export class CreateLocationComponent extends LitElement {
       case 0:
         return html`<flightlog-create-location></flightlog-create-location>`;
       case 1:
+        return html`<flightlog-wind-direction
+          @wind-direction-modified="${this.setDirection}"
+          .subOptimalDirection="${locationCreationService.suboptimalDirection}"
+          .optimalDirection="${locationCreationService.optimalDirection}"
+          modifyable
+        ></flightlog-wind-direction>`;
+      case 2:
         return this.renderLandingLocations();
+
       default:
         return html`something wrong`;
     }
+  }
+
+  private setDirection(
+    e: CustomEvent<{ optimal: number; suboptimal: number }>
+  ) {
+    locationCreationService.setDirection(e.detail.optimal, e.detail.suboptimal);
   }
 
   private renderLandingLocations(): TemplateResult[] {
@@ -68,7 +82,9 @@ export class CreateLocationComponent extends LitElement {
             @click="${() => this.currentLocation++}"
             >Add landing</mwc-button
           >
-          <mwc-button unelevated icon="save">Store</mwc-button>
+          <mwc-button unelevated @click="${this.storeLanding}" icon="save"
+            >Store</mwc-button
+          >
         </div>
       `
     );
@@ -82,5 +98,8 @@ export class CreateLocationComponent extends LitElement {
     }
 
     return content;
+  }
+  private storeLanding() {
+    locationCreationService.storeLocation().subscribe(a => console.log(a));
   }
 }
