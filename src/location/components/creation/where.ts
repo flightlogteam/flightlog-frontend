@@ -27,10 +27,17 @@ import { TextField } from '@material/mwc-textfield';
 import { locationCreationService } from 'src/location/services/location-creation.service';
 import { LocationInfo } from 'src/location/models/locationinfo';
 import { SetLocationRequest } from 'src/shared/components/map/map.component';
+import {
+  BreakPointDevice,
+  breakPointService,
+} from 'src/shared/services/breakpoint.service';
 
 @customElement('flightlog-create-location')
 export class FlightlogCreateLocationWhereComponent extends LitElement {
   private subscriptions: Subscription[] = [];
+
+  @state()
+  breakPoint: BreakPointDevice = 'laptop';
 
   tabIcon(): string {
     return 'place';
@@ -77,6 +84,11 @@ export class FlightlogCreateLocationWhereComponent extends LitElement {
     this.locationContainer.then(container => {
       this.mapHeight = container.clientHeight - 100;
     });
+    this.subscriptions.push(
+      breakPointService.breakpoint$.subscribe(
+        device => (this.breakPoint = device)
+      )
+    );
   }
 
   firstUpdated() {
@@ -139,7 +151,6 @@ export class FlightlogCreateLocationWhereComponent extends LitElement {
   }
 
   disconnectedCallback() {
-    console.log('Removing component from DOM');
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
@@ -159,7 +170,7 @@ export class FlightlogCreateLocationWhereComponent extends LitElement {
 
   render(): TemplateResult {
     return html`
-      <div class="location">
+      <div class="location ${this.breakPoint}">
         <div class="location-selection">
           <location-search
             label="Where is the start"

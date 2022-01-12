@@ -1,4 +1,8 @@
-/* TODO: Add some media queries */
 .container {
   padding: 0 10%;
+
+  &.mobile,
+  &.tablet {
+    margin-bottom: 100px;
+  }
 }

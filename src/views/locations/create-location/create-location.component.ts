@@ -58,7 +58,6 @@ export class CreateLocationComponent extends LitElement {
         ></flightlog-wind-direction>`;
       case 2:
         return this.renderLandingLocations();
-
       default:
         return html`something wrong`;
     }
