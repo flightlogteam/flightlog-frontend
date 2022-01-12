@@ -1,4 +1,4 @@
-@import "src/shared/styles/application.styles.scss";
+@import 'src/shared/styles/application.styles.scss';
 
 :host(#test) {
   --lumo-contrast-10pct: black;
@@ -21,6 +21,11 @@
 
 .location {
   display: flex;
+
+  &.mobile,
+  &.tablet {
+    display: block;
+  }
 
   .location-selection {
     color: #333;
