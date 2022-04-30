@@ -49,9 +49,9 @@ export class AuthenticationService {
   };
 
   config: KeycloakConfig = {
-    url: 'http://localhost:8082/auth',
-    realm: 'test',
-    clientId: 'test',
+    url: 'http://localhost:8082',
+    realm: 'flightlog',
+    clientId: 'flightlog-frontend',
   };
 
   private getCallback(): string {

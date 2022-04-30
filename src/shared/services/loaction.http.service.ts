@@ -18,6 +18,10 @@ export class LocationSearchHttpClient {
     }).pipe(map(item => item.response));
   }
 
+  /**
+   * Get location by a locationId from kartverket.no
+   * @param stedsnummer
+   * */
   locationDetailByLocationId(
     stedsnummer: number
   ): Observable<LocationSearchResponse> {
