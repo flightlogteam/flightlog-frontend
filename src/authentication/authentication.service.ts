@@ -7,14 +7,15 @@ import {
 } from 'keycloak-js';
 import {
   BehaviorSubject,
+  distinctUntilChanged,
   filter,
   from,
   iif,
   map,
-  mapTo,
   mergeMap,
   Observable,
   of,
+  shareReplay,
   switchMap,
 } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
@@ -32,13 +33,17 @@ interface KeyCloakUserInfo {
 export class AuthenticationService {
   keycloak: KeycloakInstance;
 
+  rnd = Math.random();
+
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
   authorizationHeader$: Observable<string>;
+  isAuthenticated$: Observable<boolean>;
 
   initOptions: KeycloakInitOptions = {
     redirectUri: this.getCallback(),
-    onLoad: 'check-sso',
+    onLoad: 'login-required',
+    //silentCheckSsoRedirectUri: window.location.origin + '/users',
     pkceMethod: 'S256',
   };
 
@@ -58,10 +63,6 @@ export class AuthenticationService {
     return window.location.toString();
   }
 
-  get isAuthenticated$(): Observable<boolean> {
-    return this.isAuthenticatedSubject;
-  }
-
   get accessToken$(): Observable<string> {
     return this.isAuthenticated$.pipe(
       filter(auth => auth),
@@ -73,7 +74,6 @@ export class AuthenticationService {
     return this.isAuthenticated$.pipe(
       filter(loggedIn => loggedIn),
       switchMap(() => from(this.keycloak.loadUserInfo())),
-      mapTo(this.keycloak.userInfo),
       map(() => {
         const info = this.keycloak.userInfo as KeyCloakUserInfo;
         return {
@@ -86,14 +86,20 @@ export class AuthenticationService {
   }
 
   constructor() {
+    this.isAuthenticated$ = this.isAuthenticatedSubject
+      .asObservable()
+      .pipe(distinctUntilChanged(), shareReplay());
     this.keycloak = Keycloak(this.config);
     this.keycloak.init(this.initOptions).then(authenticated => {
       if (authenticated) {
+        console.log('auth status', authenticated);
         if (!this.keycloak.token) {
+          console.log('no token');
           this.keycloak
             .updateToken(100)
             .then(status => this.isAuthenticatedSubject.next(status));
         } else {
+          console.log('We have a token');
           this.isAuthenticatedSubject.next(true);
         }
       }
@@ -105,7 +111,7 @@ export class AuthenticationService {
     this.verify$ = this.accessToken$.pipe(
       mergeMap(token =>
         ajax<string>({
-          url: 'http://localhost:8083/auth/verify',
+          url: 'http://localhost:61225/auth/verify',
           method: 'GET',
           crossDomain: true,
           headers: { Authorization: `Bearer ${token}` },
