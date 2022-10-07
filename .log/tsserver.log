@@ -1,0 +1,353 @@
+Info 0    [23:41:47.766] Starting TS Server
+Info 1    [23:41:47.766] Version: 4.4.4
+Info 2    [23:41:47.766] Arguments: /home/klingen/.local/share/nvm/v17.9.0/bin/node /home/klingen/Develop/flightlog-application/flightlog-frontend/node_modules/typescript/lib/tsserver.js --logFile /home/klingen/Develop/flightlog-application/flightlog-frontend/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/06fb7ea685529913ba70f765b93135f2/tscancellation*
+Info 3    [23:41:47.766] Platform: linux NodeVersion: 17 CaseSensitive: true
+Info 4    [23:41:47.766] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [23:41:47.776] Format host information updated
+Info 6    [23:41:47.785] Search path: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/authentication
+Info 7    [23:41:47.785] For info: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/authentication/authentication.service.ts :: Config file name: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 8    [23:41:47.786] Creating configuration project /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 9    [23:41:47.821] Config: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json : {
+ "rootNames": [
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/flightlog-app.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/index.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/authentication/authentication.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/authentication/models.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/config/config.interface.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/config/config.prod.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/config/config.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/core.module.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/login-component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/controllers/observer-controller.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/footer/footer.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/icon/icon.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/toolbar/toolbar-component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/core/toolbar/toolbar-navigation/toolbar-navigation.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/http/httpService.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/http/tokenInterceptor.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/components/creation/interface.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/components/creation/where.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/mappers/startMapper.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/models/locationinfo.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/services/location-backend-http.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/services/location-creation.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/services/location.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/shared.module.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/icon.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/container/container.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/location-search/location-search.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/map/map.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/wind-direction/wind-direction.component.spec.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/wind-direction/wind-direction.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/components/wind-direction/wind-image.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/models/location.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/models/start.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/services/breakpoint.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/services/loaction.http.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/services/navigation.service.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/shared/styles/fonts.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/types/icon.d.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/401.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/404.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/callback.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/dashboard.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/locations.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/login.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/users.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/flights/flights.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/flights/newflight.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/locations/locations.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/locations/create-location/create-location.component.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/node_modules/lit-scss-loader/types.d.ts",
+  "/home/klingen/Develop/flightlog-application/flightlog-frontend/node_modules/lit/decorators.d.ts"
+ ],
+ "options": {
+  "allowSyntheticDefaultImports": true,
+  "target": 7,
+  "module": 6,
+  "lib": [
+   "lib.es2020.d.ts",
+   "lib.es2017.d.ts",
+   "lib.dom.d.ts",
+   "lib.dom.iterable.d.ts"
+  ],
+  "sourceMap": true,
+  "outDir": "/home/klingen/Develop/flightlog-application/flightlog-frontend/dist/tsc",
+  "rootDir": "/home/klingen/Develop/flightlog-application/flightlog-frontend/src",
+  "importHelpers": true,
+  "noImplicitAny": true,
+  "strictFunctionTypes": true,
+  "noImplicitThis": true,
+  "noUnusedParameters": true,
+  "noImplicitReturns": true,
+  "moduleResolution": 2,
+  "baseUrl": "/home/klingen/Develop/flightlog-application/flightlog-frontend",
+  "esModuleInterop": true,
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "skipLibCheck": true,
+  "forceConsistentCasingInFileNames": true,
+  "configFilePath": "/home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json"
+ }
+}
+Info 10   [23:41:48.174] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 11   [23:41:49.595] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 1420.3673069998622ms
+Info 12   [23:41:49.595] Project '/home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json' (Configured)
+Info 13   [23:41:49.595] 	Files (739)
+
+Info 14   [23:41:49.595] -----------------------------------------------
+Info 15   [23:41:49.606] Starting updateGraphWorker: Project: /dev/null/autoImportProviderProject1*
+Info 16   [23:41:49.629] Finishing updateGraphWorker: Project: /dev/null/autoImportProviderProject1* Version: 1 structureChanged: true structureIsReused:: Not Elapsed: 23.2972059994936ms
+Info 17   [23:41:49.629] Project '/dev/null/autoImportProviderProject1*' (AutoImportProvider)
+Info 18   [23:41:49.629] 	Files (83)
+
+Info 19   [23:41:49.630] -----------------------------------------------
+Info 20   [23:41:51.691] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 21   [23:41:51.702] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 2 structureChanged: false structureIsReused:: Completely Elapsed: 11.241650998592377ms
+Info 22   [23:41:51.702] Different program with same set of files
+Info 23   [23:42:50.676] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 24   [23:42:50.687] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 3 structureChanged: false structureIsReused:: Completely Elapsed: 10.942917998880148ms
+Info 25   [23:42:50.687] Different program with same set of files
+Info 26   [23:42:54.491] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 27   [23:42:54.500] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 4 structureChanged: false structureIsReused:: Completely Elapsed: 9.02670899964869ms
+Info 28   [23:42:54.500] Different program with same set of files
+Info 29   [23:42:56.274] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 30   [23:42:56.284] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 5 structureChanged: false structureIsReused:: Completely Elapsed: 9.504220999777317ms
+Info 31   [23:42:56.284] Different program with same set of files
+Info 32   [23:42:57.911] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 33   [23:42:57.919] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 6 structureChanged: false structureIsReused:: Completely Elapsed: 7.6828589998185635ms
+Info 34   [23:42:57.919] Different program with same set of files
+Info 35   [23:42:58.750] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 36   [23:42:58.758] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 7 structureChanged: false structureIsReused:: Completely Elapsed: 7.1835380010306835ms
+Info 37   [23:42:58.758] Different program with same set of files
+Info 38   [23:42:59.247] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 39   [23:42:59.255] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 8 structureChanged: false structureIsReused:: Completely Elapsed: 8.072510998696089ms
+Info 40   [23:42:59.255] Different program with same set of files
+Info 41   [23:42:59.358] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 42   [23:42:59.366] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 9 structureChanged: false structureIsReused:: Completely Elapsed: 8.126910001039505ms
+Info 43   [23:42:59.366] Different program with same set of files
+Info 44   [23:42:59.885] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 45   [23:42:59.892] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 10 structureChanged: false structureIsReused:: Completely Elapsed: 7.0343789998441935ms
+Info 46   [23:42:59.892] Different program with same set of files
+Info 47   [23:43:00.191] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 48   [23:43:00.197] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 11 structureChanged: false structureIsReused:: Completely Elapsed: 5.9505980014801025ms
+Info 49   [23:43:00.197] Different program with same set of files
+Info 50   [23:43:00.561] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 51   [23:43:00.568] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 12 structureChanged: false structureIsReused:: Completely Elapsed: 6.247392999008298ms
+Info 52   [23:43:00.568] Different program with same set of files
+Info 53   [23:43:00.597] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 54   [23:43:00.603] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 13 structureChanged: false structureIsReused:: Completely Elapsed: 5.975739000365138ms
+Info 55   [23:43:00.603] Different program with same set of files
+Info 56   [23:43:01.189] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 57   [23:43:01.195] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 14 structureChanged: false structureIsReused:: Completely Elapsed: 5.827633000910282ms
+Info 58   [23:43:01.195] Different program with same set of files
+Info 59   [23:44:37.273] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 60   [23:44:37.279] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 15 structureChanged: false structureIsReused:: Completely Elapsed: 6.307628998532891ms
+Info 61   [23:44:37.279] Different program with same set of files
+Info 62   [23:44:37.317] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 63   [23:44:37.326] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 16 structureChanged: false structureIsReused:: Completely Elapsed: 9.084304999560118ms
+Info 64   [23:44:37.326] Different program with same set of files
+Info 65   [23:44:37.631] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 66   [23:44:37.638] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 17 structureChanged: false structureIsReused:: Completely Elapsed: 7.504182001575828ms
+Info 67   [23:44:37.639] Different program with same set of files
+Info 68   [23:44:37.989] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 69   [23:44:37.997] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 18 structureChanged: false structureIsReused:: Completely Elapsed: 7.861896000802517ms
+Info 70   [23:44:37.997] Different program with same set of files
+Info 71   [23:44:37.998] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 72   [23:44:38.005] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 19 structureChanged: false structureIsReused:: Completely Elapsed: 6.723328998312354ms
+Info 73   [23:44:38.005] Different program with same set of files
+Info 74   [23:45:00.514] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 75   [23:45:00.522] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 20 structureChanged: false structureIsReused:: Completely Elapsed: 8.507317001000047ms
+Info 76   [23:45:00.522] Different program with same set of files
+Info 77   [23:45:02.262] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 78   [23:45:02.270] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 21 structureChanged: false structureIsReused:: Completely Elapsed: 7.422638999298215ms
+Info 79   [23:45:02.270] Different program with same set of files
+Info 80   [23:45:02.805] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 81   [23:45:02.811] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 22 structureChanged: false structureIsReused:: Completely Elapsed: 5.524109000340104ms
+Info 82   [23:45:02.811] Different program with same set of files
+Info 83   [23:45:03.312] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 84   [23:45:03.318] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 23 structureChanged: false structureIsReused:: Completely Elapsed: 5.996307998895645ms
+Info 85   [23:45:03.319] Different program with same set of files
+Info 86   [23:45:03.789] Format host information updated
+Info 87   [23:45:03.790] Format host information updated
+Info 88   [23:45:03.790] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 89   [23:45:03.800] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 24 structureChanged: false structureIsReused:: Completely Elapsed: 10.158611999824643ms
+Info 90   [23:45:03.800] Different program with same set of files
+Info 91   [23:45:34.938] Search path: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/locations/create-location
+Info 92   [23:45:34.938] For info: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/views/locations/create-location/create-location.component.ts :: Config file name: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 93   [23:45:36.177] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 94   [23:45:36.188] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 25 structureChanged: false structureIsReused:: Completely Elapsed: 10.948847999796271ms
+Info 95   [23:45:36.188] Different program with same set of files
+Info 96   [23:45:37.555] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 97   [23:45:37.563] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 26 structureChanged: false structureIsReused:: Completely Elapsed: 7.606766000390053ms
+Info 98   [23:45:37.563] Different program with same set of files
+Info 99   [23:45:38.673] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 100  [23:45:38.679] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 27 structureChanged: false structureIsReused:: Completely Elapsed: 6.529851000756025ms
+Info 101  [23:45:38.679] Different program with same set of files
+Info 102  [23:45:39.092] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 103  [23:45:39.099] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 28 structureChanged: false structureIsReused:: Completely Elapsed: 7.2394060008227825ms
+Info 104  [23:45:39.100] Different program with same set of files
+Info 105  [23:45:48.018] Search path: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/services
+Info 106  [23:45:48.019] For info: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/location/services/location.service.ts :: Config file name: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 107  [23:45:49.783] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 108  [23:45:49.789] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 29 structureChanged: false structureIsReused:: Completely Elapsed: 6.472070001065731ms
+Info 109  [23:45:49.789] Different program with same set of files
+Info 110  [23:45:56.343] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 111  [23:45:56.350] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 30 structureChanged: false structureIsReused:: Completely Elapsed: 6.605621999129653ms
+Info 112  [23:45:56.350] Different program with same set of files
+Info 113  [23:45:56.773] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 114  [23:45:56.779] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 31 structureChanged: false structureIsReused:: Completely Elapsed: 5.226580999791622ms
+Info 115  [23:45:56.779] Different program with same set of files
+Info 116  [23:45:57.691] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 117  [23:45:57.697] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 32 structureChanged: false structureIsReused:: Completely Elapsed: 6.42879300005734ms
+Info 118  [23:45:57.697] Different program with same set of files
+Info 119  [23:46:03.471] Search path: /home/klingen/Develop/flightlog-application/flightlog-frontend/src
+Info 120  [23:46:03.471] For info: /home/klingen/Develop/flightlog-application/flightlog-frontend/src/flightlog-app.ts :: Config file name: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 121  [23:46:05.060] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 122  [23:46:05.066] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 33 structureChanged: false structureIsReused:: Completely Elapsed: 6.422845998778939ms
+Info 123  [23:46:05.066] Different program with same set of files
+Info 124  [23:46:47.161] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 125  [23:46:47.171] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 34 structureChanged: false structureIsReused:: Completely Elapsed: 9.86761699989438ms
+Info 126  [23:46:47.171] Different program with same set of files
+Info 127  [23:46:48.629] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 128  [23:46:48.635] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 35 structureChanged: false structureIsReused:: Completely Elapsed: 5.849221998825669ms
+Info 129  [23:46:48.635] Different program with same set of files
+Info 130  [23:46:49.762] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 131  [23:46:49.771] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 36 structureChanged: false structureIsReused:: Completely Elapsed: 8.155590001493692ms
+Info 132  [23:46:49.771] Different program with same set of files
+Info 133  [23:46:49.772] getCompletionData: Get current token: 0.012790000066161156
+Info 134  [23:46:49.772] getCompletionData: Is inside comment: 0.03765299916267395
+Info 135  [23:46:49.772] getCompletionData: Get previous token: 0.06967899948358536
+Info 136  [23:46:49.772] getCompletionsAtPosition: isCompletionListBlocker: 0.14882400073111057
+Info 137  [23:46:49.775] getCompletionData: Semantic work: 2.6814640015363693
+Info 138  [23:46:49.779] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 3.387924000620842
+Info 139  [23:46:50.272] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 140  [23:46:50.278] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 37 structureChanged: false structureIsReused:: Completely Elapsed: 5.777052000164986ms
+Info 141  [23:46:50.278] Different program with same set of files
+Info 142  [23:46:50.548] Format host information updated
+Info 143  [23:46:50.549] Format host information updated
+Info 144  [23:46:50.549] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 145  [23:46:50.557] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 38 structureChanged: false structureIsReused:: Completely Elapsed: 7.86170700006187ms
+Info 146  [23:46:50.557] Different program with same set of files
+Info 147  [23:46:50.557] getCompletionData: Get current token: 0.048826999962329865
+Info 148  [23:46:50.558] getCompletionData: Is inside comment: 0.011433999985456467
+Info 149  [23:46:50.558] getCompletionData: Get previous token: 0.08096200041472912
+Info 150  [23:46:50.558] getCompletionsAtPosition: isCompletionListBlocker: 0.003558998927474022
+Info 151  [23:46:50.560] getCompletionData: Semantic work: 2.691119000315666
+Info 152  [23:46:50.570] getCompletionData: Get current token: 0.01861399970948696
+Info 153  [23:46:50.570] getCompletionData: Is inside comment: 0.004222000017762184
+Info 154  [23:46:50.570] getCompletionData: Get previous token: 0.0298600010573864
+Info 155  [23:46:50.570] getCompletionsAtPosition: isCompletionListBlocker: 0.002012999728322029
+Info 156  [23:46:50.571] getCompletionData: Semantic work: 0.601214999333024
+Info 157  [23:46:51.304] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 158  [23:46:51.311] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 39 structureChanged: false structureIsReused:: Completely Elapsed: 6.9259380009025335ms
+Info 159  [23:46:51.311] Different program with same set of files
+Info 160  [23:46:52.532] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 161  [23:46:52.540] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 40 structureChanged: false structureIsReused:: Completely Elapsed: 7.4209799990057945ms
+Info 162  [23:46:52.540] Different program with same set of files
+Info 163  [23:46:53.362] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 164  [23:46:53.371] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 41 structureChanged: false structureIsReused:: Completely Elapsed: 8.4952910002321ms
+Info 165  [23:46:53.371] Different program with same set of files
+Info 166  [23:46:53.371] getCompletionData: Get current token: 0.011258000507950783
+Info 167  [23:46:53.371] getCompletionData: Is inside comment: 0.04199099913239479
+Info 168  [23:46:53.371] getCompletionData: Get previous token: 0.07583200000226498
+Info 169  [23:46:53.372] getCompletionsAtPosition: isCompletionListBlocker: 0.1745069995522499
+Info 170  [23:46:53.377] getExportInfoMap: cache miss or empty; calculating new results
+Info 171  [23:46:53.423] forEachExternalModuleToImportFrom autoImportProvider: 10.852002998813987
+Info 172  [23:46:53.423] getExportInfoMap: done in 46.973755000159144 ms
+Info 173  [23:46:53.487] collectAutoImports: resolved 100 module specifiers, plus 37 ambient and -62058 from cache (-10755.3% hit rate)
+Info 174  [23:46:53.487] collectAutoImports: response is incomplete
+Info 175  [23:46:53.487] collectAutoImports: 63.272166000679135
+Info 176  [23:46:53.487] getCompletionData: Semantic work: 115.55749100074172
+Info 177  [23:46:53.506] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 18.56412100046873
+Info 178  [23:46:54.022] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 179  [23:46:54.029] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 42 structureChanged: false structureIsReused:: Completely Elapsed: 6.635337000712752ms
+Info 180  [23:46:54.029] Different program with same set of files
+Info 181  [23:47:13.051] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 182  [23:47:13.060] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 43 structureChanged: false structureIsReused:: Completely Elapsed: 9.127110000699759ms
+Info 183  [23:47:13.060] Different program with same set of files
+Info 184  [23:47:14.548] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 185  [23:47:14.558] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 44 structureChanged: false structureIsReused:: Completely Elapsed: 9.899173999205232ms
+Info 186  [23:47:14.558] Different program with same set of files
+Info 187  [23:47:15.783] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 188  [23:47:15.790] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 45 structureChanged: false structureIsReused:: Completely Elapsed: 6.415386999025941ms
+Info 189  [23:47:15.790] Different program with same set of files
+Info 190  [23:47:15.790] getCompletionData: Get current token: 0.005830001085996628
+Info 191  [23:47:15.790] getCompletionData: Is inside comment: 0.0019429996609687805
+Info 192  [23:47:15.790] getCompletionData: Get previous token: 0.02636300027370453
+Info 193  [23:47:15.790] getCompletionsAtPosition: isCompletionListBlocker: 0.12706300057470798
+Info 194  [23:47:15.793] getExportInfoMap: cache hit
+Info 195  [23:47:15.846] collectAutoImports: resolved 100 module specifiers, plus 37 ambient and -51165 from cache (-10979.6% hit rate)
+Info 196  [23:47:15.846] collectAutoImports: response is incomplete
+Info 197  [23:47:15.846] collectAutoImports: 52.28050800040364
+Info 198  [23:47:15.846] getCompletionData: Semantic work: 55.42633300088346
+Info 199  [23:47:15.860] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 13.498924000188708
+Info 200  [23:47:15.867] getCompletionData: Get current token: 0.00727199949324131
+Info 201  [23:47:15.867] getCompletionData: Is inside comment: 0.003545999526977539
+Info 202  [23:47:15.867] getCompletionData: Get previous token: 0.023036999627947807
+Info 203  [23:47:15.867] getCompletionsAtPosition: isCompletionListBlocker: 0.013314999639987946
+Info 204  [23:47:15.869] getExportInfoMap: cache hit
+Info 205  [23:47:15.906] collectAutoImports: resolved 100 module specifiers, plus 37 ambient and -35039 from cache (-16297.2% hit rate)
+Info 206  [23:47:15.906] collectAutoImports: response is incomplete
+Info 207  [23:47:15.906] collectAutoImports: 37.32704300060868
+Info 208  [23:47:15.906] getCompletionData: Semantic work: 39.20315600000322
+Info 209  [23:47:15.916] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 9.9869599994272
+Info 210  [23:47:17.662] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 211  [23:47:17.669] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 46 structureChanged: false structureIsReused:: Completely Elapsed: 6.465944999828935ms
+Info 212  [23:47:17.669] Different program with same set of files
+Info 213  [23:47:18.134] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 214  [23:47:18.142] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 47 structureChanged: false structureIsReused:: Completely Elapsed: 7.757248999550939ms
+Info 215  [23:47:18.142] Different program with same set of files
+Info 216  [23:47:18.198] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 217  [23:47:18.205] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 48 structureChanged: false structureIsReused:: Completely Elapsed: 6.636459998786449ms
+Info 218  [23:47:18.205] Different program with same set of files
+Info 219  [23:47:43.886] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 220  [23:47:43.891] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 49 structureChanged: false structureIsReused:: Completely Elapsed: 5.6490029990673065ms
+Info 221  [23:47:43.891] Different program with same set of files
+Info 222  [23:48:02.830] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 223  [23:48:02.838] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 50 structureChanged: false structureIsReused:: Completely Elapsed: 7.653762001544237ms
+Info 224  [23:48:02.838] Different program with same set of files
+Info 225  [23:48:03.559] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 226  [23:48:03.567] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 51 structureChanged: false structureIsReused:: Completely Elapsed: 7.774961000308394ms
+Info 227  [23:48:03.567] Different program with same set of files
+Info 228  [23:48:03.567] getCompletionData: Get current token: 0.003576001152396202
+Info 229  [23:48:03.567] getCompletionData: Is inside comment: 0.0015980005264282227
+Info 230  [23:48:03.567] getCompletionData: Get previous token: 0.014938998967409134
+Info 231  [23:48:03.567] getCompletionsAtPosition: isCompletionListBlocker: 0.009818000718951225
+Info 232  [23:48:03.569] getExportInfoMap: cache hit
+Info 233  [23:48:03.608] collectAutoImports: resolved 96 module specifiers, plus 37 ambient and -10216 from cache
+Info 234  [23:48:03.608] collectAutoImports: response is complete
+Info 235  [23:48:03.608] collectAutoImports: 39.02957499958575
+Info 236  [23:48:03.608] getCompletionData: Semantic work: 41.04012900032103
+Info 237  [23:48:03.619] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 10.472857998684049
+Info 238  [23:48:03.671] getCompletionData: Get current token: 0.003713000565767288
+Info 239  [23:48:03.671] getCompletionData: Is inside comment: 0.0018130000680685043
+Info 240  [23:48:03.671] getCompletionData: Get previous token: 0.015682999044656754
+Info 241  [23:48:03.671] getCompletionsAtPosition: isCompletionListBlocker: 0.010320000350475311
+Info 242  [23:48:03.673] getExportInfoMap: cache hit
+Info 243  [23:48:03.703] collectAutoImports: resolved 0 module specifiers, plus 37 ambient and 1144 from cache
+Info 244  [23:48:03.703] collectAutoImports: response is complete
+Info 245  [23:48:03.703] collectAutoImports: 30.11089700087905
+Info 246  [23:48:03.703] getCompletionData: Semantic work: 31.901627998799086
+Info 247  [23:48:03.710] getCompletionsAtPosition: getCompletionEntriesFromSymbols: 6.70745800063014
+Info 248  [23:48:26.337] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 249  [23:48:26.343] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 52 structureChanged: false structureIsReused:: Completely Elapsed: 5.247712999582291ms
+Info 250  [23:48:26.343] Different program with same set of files
+Info 251  [23:48:28.483] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 252  [23:48:28.492] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 53 structureChanged: false structureIsReused:: Completely Elapsed: 8.368730999529362ms
+Info 253  [23:48:28.492] Different program with same set of files
+Info 254  [23:48:32.140] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 255  [23:48:32.147] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 54 structureChanged: false structureIsReused:: Completely Elapsed: 6.787382001057267ms
+Info 256  [23:48:32.147] Different program with same set of files
+Info 257  [23:48:36.830] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 258  [23:48:36.836] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 55 structureChanged: false structureIsReused:: Completely Elapsed: 5.979670999571681ms
+Info 259  [23:48:36.836] Different program with same set of files
+Info 260  [23:48:41.853] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 261  [23:48:41.860] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 56 structureChanged: false structureIsReused:: Completely Elapsed: 7.504377000033855ms
+Info 262  [23:48:41.860] Different program with same set of files
+Info 263  [23:48:42.846] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 264  [23:48:42.853] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 57 structureChanged: false structureIsReused:: Completely Elapsed: 7.249012999236584ms
+Info 265  [23:48:42.853] Different program with same set of files
+Info 266  [23:49:32.100] Starting updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json
+Info 267  [23:49:32.110] Finishing updateGraphWorker: Project: /home/klingen/Develop/flightlog-application/flightlog-frontend/tsconfig.json Version: 58 structureChanged: false structureIsReused:: Completely Elapsed: 9.700138000771403ms
+Info 268  [23:49:32.111] Different program with same set of files

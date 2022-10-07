@@ -1,4 +1,4 @@
-import { forkJoin, map, mergeMap, Observable, tap } from 'rxjs';
+import { forkJoin, map, mergeMap, Observable } from 'rxjs';
 import {
   LocationSearchHttpClient,
   locationSearchHttpClient,
@@ -15,7 +15,7 @@ export class LocationService {
       info: this.httpService
         .pointSearch(lat, lon)
         .pipe(
-          mergeMap((pointresponse) =>
+          mergeMap(pointresponse =>
             this.httpService.locationDetailByLocationId(
               this.getLocationNumber(pointresponse.navn)
             )
@@ -23,8 +23,7 @@ export class LocationService {
         ),
       elevation: this.httpService.getElevation(lat, lon),
     }).pipe(
-      tap((a) => console.log(a)),
-      map((data) => ({
+      map(data => ({
         name: data.info.navn[0].stedsnavn[0].skrivemåte,
         kommune: data.info.navn[0].kommuner[0].kommunenavn,
         fylke: data.info.navn[0].fylker[0].fylkesnavn,
@@ -41,7 +40,7 @@ export class LocationService {
       for (let i = 0; i < locations.length; i++) {
         if (
           FORBIDDEN_TYPES.some(
-            (type) =>
+            type =>
               locations[i].navneobjekttype.toLowerCase() !== type.toLowerCase()
           )
         ) {
